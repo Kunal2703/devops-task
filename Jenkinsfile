@@ -57,8 +57,8 @@ pipeline {
                     aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME
 
                     echo "Applying Kubernetes manifests..."
-                    kubectl apply -f devops-task/k8s/deployment.yaml -n $KUBE_NAMESPACE
-                    kubectl apply -f devops-task/k8s/service.yaml -n $KUBE_NAMESPACE
+                    kubectl apply -f deployment.yaml -n $KUBE_NAMESPACE
+                    kubectl apply -f service.yaml -n $KUBE_NAMESPACE
 
                     echo "Waiting for rollout..."
                     kubectl rollout status deployment/$APP_NAME -n $KUBE_NAMESPACE
