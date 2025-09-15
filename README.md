@@ -17,11 +17,9 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── deployment-proof/       # Deployment screenshots & proof
-│   ├── pipeline-success.png
-│   ├── eks-deployment.png
-│   └── url.txt
-├── docs/
-│   └── architecture.png    # Architecture diagram
+│   ├── eks
+│   ├── deployment
+│   └── AWS(services)
 ├── README.md               # Documentation
 
 ```
