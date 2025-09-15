@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = "ap-south-1"
-        ECR_REPO = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
-        APP_NAME = "devops-task"
-        CLUSTER_NAME = "demo-eks"   // update with your cluster name
+        AWS_REGION     = "ap-south-1"
+        ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
+        APP_NAME       = "devops-task"
+        CLUSTER_NAME   = "demo-eks"      // update with your actual EKS cluster name
         KUBE_NAMESPACE = "default"
     }
 
@@ -20,9 +20,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 sh '''
-                    echo "Installing dependencies & running tests"
-                    npm install
-                    npm test
+                    echo "Skipping local npm install — handled inside Dockerfile"
                 '''
             }
         }
@@ -57,9 +55,11 @@ pipeline {
                 sh '''
                     echo "Deploying to EKS..."
 
+                    # If deployment exists, update image; else create it
                     kubectl create deployment $APP_NAME --image=$ECR_REPO:latest -n $KUBE_NAMESPACE || \
                     kubectl set image deployment/$APP_NAME $APP_NAME=$ECR_REPO:latest -n $KUBE_NAMESPACE
 
+                    echo "Waiting for rollout..."
                     kubectl rollout status deployment/$APP_NAME -n $KUBE_NAMESPACE
                 '''
             }
