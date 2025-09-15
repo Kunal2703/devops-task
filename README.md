@@ -9,18 +9,18 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 ## 📂 Repository Structure
 ```bash
 .
-├── app.js                  # Sample Node.js application
-├── package.json            # Node.js dependencies
-├── Dockerfile              # Containerization file
-├── Jenkinsfile             # Jenkins CI/CD pipeline
-├── k8s/                    # Kubernetes manifests
+├── app.js                  
+├── package.json            
+├── Dockerfile              
+├── Jenkinsfile             
+├── k8s/                    
 │   ├── deployment.yaml
 │   └── service.yaml
-├── deployment-proof/       # Deployment screenshots & proof
+├── deployment-proof/       
 │   ├── eks
 │   ├── deployment
 │   └── AWS(services)
-├── README.md               # Documentation
+├── README.md               
 
 ```
 ```bash
@@ -29,7 +29,7 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 - **GitHub** → Source code management  
 - **Jenkins** → CI/CD automation (webhook-triggered pipeline)  
 - **Docker** → Containerization of Node.js app  
-- **AWS ECR** → Private container registry  
+- **AWS ECR** → Container registry  
 - **AWS EKS (Kubernetes)** → Orchestrating application deployment  
 - **CloudWatch** → Basic monitoring & logging  
 - **Terraform** → Infrastructure as Code  
