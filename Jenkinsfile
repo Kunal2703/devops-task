@@ -5,7 +5,7 @@ pipeline {
         AWS_REGION     = "ap-south-1"
         ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
         APP_NAME       = "devops-task"
-        CLUSTER_NAME   = "demo-eks"      // replace with your EKS cluster name
+        CLUSTER_NAME   = "demo-eks"
         KUBE_NAMESPACE = "default"
         IMAGE_TAG      = "v${BUILD_NUMBER}"
     }
@@ -73,10 +73,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Build $BUILD_NUMBER deployed successfully to $CLUSTER_NAME ($KUBE_NAMESPACE)"
+            echo "Build $BUILD_NUMBER deployed successfully to $CLUSTER_NAME ($KUBE_NAMESPACE)"
         }
         failure {
-            echo "❌ Build failed! Check logs."
+            echo "Build failed! Check logs."
         }
     }
 }
