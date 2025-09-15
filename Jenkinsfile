@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = "ap-south-1"
-        ECR_REPO = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
-        APP_NAME = "devops-task"
-        CLUSTER_NAME = "demo-eks"   // update with your cluster name
+        AWS_REGION     = "ap-south-1"
+        ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
+        APP_NAME       = "devops-task"
+        CLUSTER_NAME   = "demo-eks"
         KUBE_NAMESPACE = "default"
     }
 
@@ -20,9 +20,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 sh '''
-                    echo "Installing dependencies & running tests"
-                    npm install
-                    npm test
+                    echo "Skipping local build & test — handled inside Dockerfile"
                 '''
             }
         }
@@ -70,6 +68,5 @@ pipeline {
                 '''
             }
         }
-
     }
 }
