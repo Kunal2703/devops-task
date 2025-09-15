@@ -1,61 +1,52 @@
-# Logo Server
+# DevOps Task – CI/CD Pipeline with Jenkins, AWS ECR & EKS
 
-A simple Express.js web server that serves the Swayatt logo image.
+## Objective
+The objective of this project is to **set up a CI/CD pipeline** for a sample Node.js application using **AWS, Jenkins, Docker, and Kubernetes (EKS)**.  
+The pipeline demonstrates **automation, scalability, and DevOps best practices**.
 
-## What is this app?
+---
 
-This is a lightweight Node.js application built with Express.js that serves a single logo image (`logoswayatt.png`) when accessed through a web browser. When you visit the root URL, the server responds by displaying the Swayatt logo.
-
-## Prerequisites
-
-- Node.js (version 12 or higher)
-- npm (Node Package Manager)
-
-## Installation
-
-1. Clone or download this repository
-2. Navigate to the project directory:
-   ```bash
-   cd "devops task"
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## How to Start the App
-
-Run the following command:
+## 📂 Repository Structure
 ```bash
-npm start
-```
-
-The server will start and display:
-```
-Server running on http://localhost:3000
-```
-
-## Usage
-
-Once the server is running, open your web browser and navigate to:
-```
-http://localhost:3000
-```
-
-You will see the Swayatt logo displayed in your browser.
-
-## Project Structure
+.
+├── app.js                  # Sample Node.js application
+├── package.json            # Node.js dependencies
+├── Dockerfile              # Containerization file
+├── Jenkinsfile             # Jenkins CI/CD pipeline
+├── k8s/                    # Kubernetes manifests
+│   ├── deployment.yaml
+│   └── service.yaml
+├── deployment-proof/       # Deployment screenshots & proof
+│   ├── pipeline-success.png
+│   ├── eks-deployment.png
+│   └── url.txt
+├── docs/
+│   └── architecture.png    # Architecture diagram
+├── README.md               # Documentation
 
 ```
-├── app.js              # Main server file
-├── package.json        # Project dependencies and scripts
-├── logoswayatt.png     # Logo image file
-└── README.md          # This file
+```bash
+
+## 🛠 Tools & Services Used
+- **GitHub** → Source code management  
+- **Jenkins** → CI/CD automation (webhook-triggered pipeline)  
+- **Docker** → Containerization of Node.js app  
+- **AWS ECR** → Private container registry  
+- **AWS EKS (Kubernetes)** → Orchestrating application deployment  
+- **CloudWatch** → Basic monitoring & logging  
+- **Terraform** → Infrastructure as Code (bonus)  
+
+```
+## 📸 Deployment Proof
+- ✅ Jenkins pipeline executed successfully  
+- ✅ Application deployed to **AWS EKS**  
+- ✅ Accessible via AWS Load Balancer  
+
+
 ```
 
-## Technical Details
+```bash
+🔗 **Public URL:**  
 
-- **Framework**: Express.js
-- **Port**: 3000
-- **Endpoint**: GET `/` - serves the logo image
-- **File served**: `logoswayatt.png`
+http://ada65692506bb456695ca64efa855dc8-1687962680.ap-south-1.elb.amazonaws.com/
+```
