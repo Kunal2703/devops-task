@@ -5,18 +5,11 @@ pipeline {
         AWS_REGION     = "ap-south-1"
         ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
         APP_NAME       = "devops-task"
-        CLUSTER_NAME   = "demo-eks"
+        CLUSTER_NAME   = "demo-eks"      // replace with your EKS cluster name
         KUBE_NAMESPACE = "default"
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/Kunal2703/devops-task.git'
-            }
-        }
-
         stage('Build & Test') {
             steps {
                 sh '''
@@ -56,12 +49,9 @@ pipeline {
                     echo "Configuring kubectl for EKS..."
                     aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME
 
-                    echo "Navigating to workspace..."
-                    cd $WORKSPACE
-
                     echo "Applying Kubernetes manifests..."
-                    kubectl apply -f deployment.yaml -n $KUBE_NAMESPACE
-                    kubectl apply -f service.yaml -n $KUBE_NAMESPACE
+                    kubectl apply -f k8s/deployment.yaml -n $KUBE_NAMESPACE
+                    kubectl apply -f k8s/service.yaml -n $KUBE_NAMESPACE
 
                     echo "Waiting for rollout..."
                     kubectl rollout status deployment/$APP_NAME -n $KUBE_NAMESPACE
