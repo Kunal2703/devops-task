@@ -54,8 +54,15 @@ pipeline {
                     aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME --kubeconfig /var/lib/jenkins/.kube/config
                     export KUBECONFIG=/var/lib/jenkins/.kube/config
 
-                    echo "Updating deployment image..."
-                    kubectl set image deployment/$APP_NAME $APP_NAME=$ECR_REPO:$IMAGE_TAG -n $KUBE_NAMESPACE
+                    echo "Checking if deployment exists..."
+                    if kubectl get deployment $APP_NAME -n $KUBE_NAMESPACE >/dev/null 2>&1; then
+                        echo "✅ Deployment exists, updating image..."
+                        kubectl set image deployment/$APP_NAME $APP_NAME=$ECR_REPO:$IMAGE_TAG -n $KUBE_NAMESPACE
+                    else
+                        echo "⚡ Deployment not found, applying manifests..."
+                        kubectl apply -f $WORKSPACE/k8s/deployment.yaml -n $KUBE_NAMESPACE
+                        kubectl apply -f $WORKSPACE/k8s/service.yaml -n $KUBE_NAMESPACE
+                    fi
 
                     echo "Waiting for rollout..."
                     kubectl rollout status deployment/$APP_NAME -n $KUBE_NAMESPACE
