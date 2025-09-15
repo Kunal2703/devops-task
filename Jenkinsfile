@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION     = "ap-south-1"
-        ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
-        APP_NAME       = "devops-task"
-        CLUSTER_NAME   = "demo-eks"      // replace with your actual EKS cluster name
+        AWS_REGION = "ap-south-1"
+        ECR_REPO = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
+        APP_NAME = "devops-task"
+        CLUSTER_NAME = "demo-eks"   // update with your cluster name
         KUBE_NAMESPACE = "default"
     }
 
@@ -20,7 +20,9 @@ pipeline {
         stage('Build & Test') {
             steps {
                 sh '''
-                    echo "Skipping local npm install — handled inside Dockerfile"
+                    echo "Installing dependencies & running tests"
+                    npm install
+                    npm test
                 '''
             }
         }
@@ -56,6 +58,9 @@ pipeline {
                     echo "Configuring kubectl for EKS..."
                     aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME
 
+                    echo "Navigating to workspace..."
+                    cd $WORKSPACE
+
                     echo "Applying Kubernetes manifests..."
                     kubectl apply -f deployment.yaml -n $KUBE_NAMESPACE
                     kubectl apply -f service.yaml -n $KUBE_NAMESPACE
@@ -65,5 +70,6 @@ pipeline {
                 '''
             }
         }
+
     }
 }
