@@ -34,7 +34,7 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 - **CloudWatch** → Basic monitoring & logging  
 - **Terraform** → Infrastructure as Code  
 ```
-  [GitHub Repo](https://github.com/Kunal2703/myproject-terraform.git)
+  [https://github.com/Kunal2703/myproject-terraform.git](https://github.com/Kunal2703/myproject-terraform.git)
 
 
 ## 📸 Deployment Proof
