@@ -32,7 +32,7 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 - **AWS ECR** → Private container registry  
 - **AWS EKS (Kubernetes)** → Orchestrating application deployment  
 - **CloudWatch** → Basic monitoring & logging  
-- **Terraform** → Infrastructure as Code (https://github.com/Kunal2703/myproject-terraform.git)  
+- **Terraform** → Infrastructure as Code [terraform](https://github.com/Kunal2703/myproject-terraform.git)  
 
 ```
 ## 📸 Deployment Proof
@@ -46,5 +46,5 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 ```bash
 🔗 **Public URL:**  
 
-http://ada65692506bb456695ca64efa855dc8-1687962680.ap-south-1.elb.amazonaws.com/
+[http://ada65692506bb456695ca64efa855dc8-1687962680.ap-south-1.elb.amazonaws.com/](http://ada65692506bb456695ca64efa855dc8-1687962680.ap-south-1.elb.amazonaws.com/)
 ```
