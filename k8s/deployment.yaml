@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: devops-task
-        image: 205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task:latest
+        image: <Account ID>.dkr.ecr.ap-south-1.amazonaws.com/devops-task:latest
         ports:
         - containerPort: 3000

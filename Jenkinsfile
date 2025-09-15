@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_REGION     = "ap-south-1"
-        ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
+        ECR_REPO       = "<Account ID>.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
         APP_NAME       = "devops-task"
         CLUSTER_NAME   = "demo-eks"
         KUBE_NAMESPACE = "default"
@@ -56,7 +56,7 @@ pipeline {
 
                     echo "Checking if deployment exists..."
                     if kubectl get deployment $APP_NAME -n $KUBE_NAMESPACE >/dev/null 2>&1; then
-                        echo "✅ Deployment exists, updating image..."
+                        echo "Deployment exists, updating image..."
                         kubectl set image deployment/$APP_NAME $APP_NAME=$ECR_REPO:$IMAGE_TAG -n $KUBE_NAMESPACE
                     else
                         echo "⚡ Deployment not found, applying manifests..."
