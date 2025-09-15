@@ -5,7 +5,7 @@ pipeline {
         AWS_REGION     = "ap-south-1"
         ECR_REPO       = "205930634535.dkr.ecr.ap-south-1.amazonaws.com/devops-task"
         APP_NAME       = "devops-task"
-        CLUSTER_NAME   = "demo-eks"      // update with your actual EKS cluster name
+        CLUSTER_NAME   = "demo-eks"      // replace with your actual EKS cluster name
         KUBE_NAMESPACE = "default"
     }
 
@@ -53,11 +53,12 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 sh '''
-                    echo "Deploying to EKS..."
+                    echo "Configuring kubectl for EKS..."
+                    aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME
 
-                    # If deployment exists, update image; else create it
-                    kubectl create deployment $APP_NAME --image=$ECR_REPO:latest -n $KUBE_NAMESPACE || \
-                    kubectl set image deployment/$APP_NAME $APP_NAME=$ECR_REPO:latest -n $KUBE_NAMESPACE
+                    echo "Applying Kubernetes manifests..."
+                    kubectl apply -f devops-task/k8s/deployment.yaml -n $KUBE_NAMESPACE
+                    kubectl apply -f devops-task/k8s/service.yaml -n $KUBE_NAMESPACE
 
                     echo "Waiting for rollout..."
                     kubectl rollout status deployment/$APP_NAME -n $KUBE_NAMESPACE
