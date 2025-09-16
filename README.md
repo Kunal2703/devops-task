@@ -43,7 +43,6 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 
 ```
 
-```bash
 🔗 **Public URL:**  
 ```
 [http://ada65692506bb456695ca64efa855dc8-1687962680.ap-south-1.elb.amazonaws.com/](http://ada65692506bb456695ca64efa855dc8-1687962680.ap-south-1.elb.amazonaws.com/)
