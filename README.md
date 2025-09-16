@@ -23,10 +23,8 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 ├── README.md               
 
 ```
-```bash
 
 ## 🛠 Tools & Services Used
-```
 - **GitHub** → Source code management  
 - **Jenkins** → CI/CD automation (webhook-triggered pipeline)  
 - **Docker** → Containerization of Node.js app  
