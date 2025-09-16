@@ -26,6 +26,7 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 ```bash
 
 ## 🛠 Tools & Services Used
+```
 - **GitHub** → Source code management  
 - **Jenkins** → CI/CD automation (webhook-triggered pipeline)  
 - **Docker** → Containerization of Node.js app  
@@ -33,7 +34,6 @@ The pipeline demonstrates **automation, scalability, and DevOps best practices**
 - **AWS EKS (Kubernetes)** → Orchestrating application deployment  
 - **CloudWatch** → Basic monitoring & logging  
 - **Terraform** → Infrastructure as Code  
-```
   [https://github.com/Kunal2703/myproject-terraform.git](https://github.com/Kunal2703/myproject-terraform.git)
 
 
